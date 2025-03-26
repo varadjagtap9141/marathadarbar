@@ -3,7 +3,8 @@ class Login extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('login');
+        echo "hello world";
+        $this->load->view('login_form');
     }
 }
 ?>

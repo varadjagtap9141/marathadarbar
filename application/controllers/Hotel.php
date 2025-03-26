@@ -15,5 +15,11 @@ class Hotel extends CI_Controller
         $this->load->view('hotel/index');
         $this->footer();
     }
+    public function products()
+    {
+        $this->navbar();
+        $this->load->view('hotel/products');
+        $this->footer();
+    }  
 }
 ?>
