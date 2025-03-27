@@ -9,5 +9,9 @@ class My_model extends CI_model
     {
         return $this->db->get($tname)->result_array();
     }
+    public function select_where($tname,$cond)
+    {
+        return $this->db->where($cond)->get($tname)->result_array();
+    }
 }
 ?>

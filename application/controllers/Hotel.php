@@ -1,6 +1,15 @@
 <?php
 class Hotel extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if(!isset($_SESSION['hotel_id']))
+        {
+            redirect(base_url('login'));
+            exit;
+        }
+    }
     protected function navbar()
     {
         $this->load->view('hotel/navbar');
