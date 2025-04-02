@@ -24,11 +24,17 @@ class Hotel extends CI_Controller
         $this->load->view('hotel/index');
         $this->footer();
     }
-    public function products()
+    public function manage_table()
     {
         $this->navbar();
-        $this->load->view('hotel/products');
+        $this->load->view('hotel/manage_table');
         $this->footer();
     }  
+    public function save_table()
+    {
+        $_POST['hotel_id'] = $_SESSION['hotel_id'];
+        $this->My_model->save("hotel_table",$_POST);
+        redirect(base_url('hotel/manage_table'));
+    }
 }
 ?>

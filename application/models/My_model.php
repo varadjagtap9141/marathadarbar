@@ -1,7 +1,7 @@
 <?php
 class My_model extends CI_model
 {
-    public function insert($tname,$data)
+    public function save($tname,$data)
     {
         $this->db->insert($tname,$data);
     }
