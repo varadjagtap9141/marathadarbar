@@ -13,5 +13,13 @@ class My_model extends CI_model
     {
         return $this->db->where($cond)->get($tname)->result_array();
     }
+    public function update($tname,$data,$cond)
+    {
+        $this->db->where($cond)->update($tname,$data);
+    }
+    public function delete($tname,$cond)
+    {
+        $this->db->where($cond)->delete($tname);
+    }
 }
 ?>

@@ -43,6 +43,12 @@
                                 class="align-middle">Manage Table</span>
                         </a>
                     </li>
+                    <li class="sidebar-item active">
+                        <a class="sidebar-link" href="<?=base_url('hotel/manage_category')?>">
+                            <i class="align-middle" data-feather="sliders"></i> <span
+                                class="align-middle">Manage Category</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
