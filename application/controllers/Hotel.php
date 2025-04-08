@@ -49,8 +49,7 @@ class Hotel extends CI_Controller
     public function manage_category()
     {
         $this->navbar();
-        $cond=['hotel_id'=>$_SESSION['hotel_id']];
-        $data['category']=$this->My_model->select_where("category",$cond);
+        $data['category']=$this->My_model->get_category();
         $this->load->view('hotel/manage_category',$data);
         $this->footer();
     }
@@ -64,8 +63,16 @@ class Hotel extends CI_Controller
     public function add_product()
     {
         $this->navbar();
-        $this->load->view('hotel/add_product');
+        $data['category']=$this->My_model->get_category();
+        $this->load->view('hotel/add_product',$data);
         $this->footer();
+    }
+    public function save_product()
+    {
+        $_POST['product_img']=$product_img=time().$_FILES['product_img']['name'];
+        move_uploaded_file($_FILES['product_img']['tmp_name'],"upload/".$product_img);
+        $this->My_model->save("product",$_POST);
+        redirect(base_url('hotel/add_product'));
     }
 }
 ?>

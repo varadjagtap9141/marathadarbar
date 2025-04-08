@@ -21,5 +21,10 @@ class My_model extends CI_model
     {
         $this->db->where($cond)->delete($tname);
     }
+    public function get_category()
+    {
+        $cond=['hotel_id'=>$_SESSION['hotel_id']];
+        return $this->select_where("category",$cond);
+    }
 }
 ?>
