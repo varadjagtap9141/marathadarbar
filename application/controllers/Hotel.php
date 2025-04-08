@@ -60,5 +60,12 @@ class Hotel extends CI_Controller
         $this->My_model->save("category",$_POST);
         redirect(base_url('hotel/manage_category'));
     }
+    //category edit,update,delete pending
+    public function add_product()
+    {
+        $this->navbar();
+        $this->load->view('hotel/add_product');
+        $this->footer();
+    }
 }
 ?>
