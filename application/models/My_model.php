@@ -26,5 +26,9 @@ class My_model extends CI_model
         $cond=['hotel_id'=>$_SESSION['hotel_id']];
         return $this->select_where("category",$cond);
     }
+    public function get_products()
+    {
+        return $this->db->query("SELECT * FROM product,category WHERE product.category_id=category.category_id")->result_array();
+    }
 }
 ?>

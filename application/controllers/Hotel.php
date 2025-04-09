@@ -78,8 +78,7 @@ class Hotel extends CI_Controller
     public function product_list()
     {
         $this->navbar();
-        $cond=['hotel_id'=>$_SESSION['hotel_id']];
-        $data['products']=$this->My_model->select_where("product",$cond);
+        $data['products']=$this->My_model->get_products();
         $this->load->view('hotel/product_list',$data);
         $this->footer();
     }

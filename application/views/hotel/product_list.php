@@ -19,7 +19,7 @@
                     <tr>
                     <td><?=$key+1?></td>
                     <td><?=$row['product_name']?></td>
-                    <td><?=$row['category_id']?></td>
+                    <td><?=$row['category_name']?></td>
                     <td>
                         <a href="<?=base_url('hotel/edit_product')?>/<?=$row['product_id']?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?=base_url('hotel/delete_product')?>/<?=$row['product_id']?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
