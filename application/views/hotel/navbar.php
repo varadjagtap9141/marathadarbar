@@ -55,6 +55,12 @@
                                 class="align-middle">Add Products</span>
                         </a>
                     </li>
+                    <li class="sidebar-item active">
+                        <a class="sidebar-link" href="<?=base_url('hotel/product_list')?>">
+                            <i class="align-middle" data-feather="sliders"></i> <span
+                                class="align-middle">Products List</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

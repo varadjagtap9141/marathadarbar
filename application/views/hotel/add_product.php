@@ -20,7 +20,7 @@
                         foreach($category as $row)
                         {
                             ?>
-                            <option><?=$row['category_name']?></option>
+                            <option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
                             <?php
                         }
                         ?>

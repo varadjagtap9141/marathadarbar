@@ -69,10 +69,19 @@ class Hotel extends CI_Controller
     }
     public function save_product()
     {
+        $_POST['hotel_id']=$_SESSION['hotel_id'];
         $_POST['product_img']=$product_img=time().$_FILES['product_img']['name'];
         move_uploaded_file($_FILES['product_img']['tmp_name'],"upload/".$product_img);
         $this->My_model->save("product",$_POST);
         redirect(base_url('hotel/add_product'));
+    }
+    public function product_list()
+    {
+        $this->navbar();
+        $cond=['hotel_id'=>$_SESSION['hotel_id']];
+        $data['products']=$this->My_model->select_where("product",$cond);
+        $this->load->view('hotel/product_list',$data);
+        $this->footer();
     }
 }
 ?>
