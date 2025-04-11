@@ -70,7 +70,7 @@
             <?php foreach($products as $row): ?>
             <div class=" col-md-3 mb-4 box box_category <?=$row['category_id']?> product-item">
                 <div class="card text-center border-0 shadow">
-                    <img src="upload/<?=$row['product_img']?>" class=" img-fluid" alt="<?=$row['product_name']?>">
+                    <img src="<?=base_url()?>upload/<?=$row['product_img']?>" class=" img-fluid" alt="<?=$row['product_name']?>">
                     <div class="card-body">
                         <h5 class="card-title"><?=$row['product_name']?></h5>
                         <p class="card-text"><strong>₹.<?=$row['product_price']?></strong></p>
@@ -103,7 +103,7 @@
         // Filter products
         const products = document.querySelectorAll('.product-item');
         products.forEach(product => {
-            if (categoryId === 'all' || product.classList.contains(categoryId.toString())) {
+            if (product.classList.contains(categoryId.toString())) {
                 product.style.display = 'block';
             } else {
                 product.style.display = 'none';
@@ -121,7 +121,8 @@
         const currentVal = parseInt(input.value);
         if (currentVal > 1) input.value = currentVal - 1;
     }
-    </script>
+</script>
+
 </body>
 
 </html>
