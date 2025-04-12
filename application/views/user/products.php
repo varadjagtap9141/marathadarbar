@@ -7,7 +7,7 @@
   <title>Hotel Maratha Darbar</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <style>
+  <style> 
     .category_scroll_wrapper {
       overflow-x: auto;
       -ms-overflow-style: none;
@@ -85,9 +85,9 @@
                 <h5 class="mb-1"><?=$row['product_name']?></h5>
                 <p class="mb-2 text-muted"><strong>₹.<?=$row['product_price']?></strong></p>
                 <div class="d-flex gap-2">
-                  <button class="btn btn-outline-secondary rounded-circle" style=" max-width: fit-content" onclick="decreaseQty(this)"><i class='bx bx-minus'></i></button>
+                  <button class="btn btn-outline-secondary rounded-circle" style=" max-width: fit-content" onclick="decreaseQty(this,<?=$row['product_id']?>)"><i class='bx bx-minus'></i></button>
                   <input type="number" class="form-control form-control-sm text-center rounded-0 border border-dark" value="0" min="0" style="width:100px;">
-                  <button class="btn btn-outline-secondary rounded-circle" style=" max-width: fit-content" onclick="increaseQty(this)"><i class='bx bx-plus'></i></button>
+                  <button class="btn btn-outline-secondary rounded-circle" style=" max-width: fit-content" onclick="increaseQty(this,<?=$row['product_id']?>)"><i class='bx bx-plus'></i></button>
                 </div>
               </div>
             </div>
@@ -119,12 +119,20 @@
       });
     }
 
-    function increaseQty(button) {
+    function increaseQty(button,product_id) {
+
       const input = button.previousElementSibling;
       input.value = parseInt(input.value) + 1;
+
+      $.ajax({
+        "url":"<?=base_url()?>user/add_product_session",
+        "data":{"product_id":product_id,"qty":input_value}
+      }).done(function(res){
+        console.log(res);
+      });
     }
 
-    function decreaseQty(button) {
+    function decreaseQty(button,product_id) {
       const input = button.nextElementSibling;
       const currentVal = parseInt(input.value);
       if (currentVal > 0) input.value = currentVal - 1;
