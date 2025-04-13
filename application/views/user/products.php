@@ -126,7 +126,7 @@
 
       $.ajax({
         "url":"<?=base_url()?>user/add_product_session",
-        "data":{"product_id":product_id,"qty":input_value}
+        "data":{"product_id":product_id,"qty":input.value}
       }).done(function(res){
         console.log(res);
       });
@@ -147,6 +147,7 @@
       }
     });
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>
