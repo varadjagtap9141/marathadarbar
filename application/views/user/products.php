@@ -71,10 +71,19 @@
         </div>
       </div>
     </div>
-
+    
     <!-- Products Grid -->
     <div class="row" id="productContainer">
-      <?php foreach($products as $row): ?>
+      <?php foreach($products as $row){
+        if(isset($_SESSION['cart'][$row['product_id']]))
+        {
+          $qty = $_SESSION['cart'][$row['product_id']];
+        }
+        else
+        {
+          $qty = 0;
+        }
+        ?>
         <div class="col-md-6 mb-4 box box_category <?=$row['category_id']?> product-item" style="display: none;">
           <div class="card border-0 shadow p-3">
             <div class="d-flex align-items-center">
@@ -84,16 +93,18 @@
               <div class="flex-grow-1">
                 <h5 class="mb-1"><?=$row['product_name']?></h5>
                 <p class="mb-2 text-muted"><strong>₹.<?=$row['product_price']?></strong></p>
+              
+
                 <div class="d-flex gap-2">
                   <button class="btn btn-outline-secondary rounded-circle" style=" max-width: fit-content" onclick="decreaseQty(this,<?=$row['product_id']?>)"><i class='bx bx-minus'></i></button>
-                  <input type="number" class="form-control form-control-sm text-center rounded-0 border border-dark" value="0" min="0" style="width:100px;">
+                  <input type="number" class="form-control form-control-sm text-center rounded-0 border border-dark" value="<?=$qty?>" min="0" style="width:100px;">
                   <button class="btn btn-outline-secondary rounded-circle" style=" max-width: fit-content" onclick="increaseQty(this,<?=$row['product_id']?>)"><i class='bx bx-plus'></i></button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <?php endforeach; ?>
+      <?php } ?>
     </div>
   </div>
   <div class="container">
