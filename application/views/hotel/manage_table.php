@@ -34,7 +34,9 @@
                 {
                     ?>
                     <tr>
-                        <td><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm btn-secondary shadow-none" onClick="show_qr(<?=$value['table_id']?>)"><i class='bx bx-qr fs-4'></i></button></td>
+                        <td><button
+                                class="btn btn-sm btn-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                onClick="show_qr(<?=$value['table_id']?>)"><i class='bx bx-qr fs-4'></i></button></td>
                         <td><?=$key+1?></td>
                         <td><?=$value['table_no']?></td>
                         <td>
@@ -52,28 +54,37 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="qrModalLabel">Table QR</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div id="qrcode"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 </script>
 
 
 <script>
-    function show_qr(table_id)
-    {
-        document.getElementById("qrcode").innerHTML = "";
-        var qrcode = new QRCode("qrcode",
-    "<?=base_url()?>user/index?table_id=" + table_id);
-    }
+function show_qr(table_id) {
+    // Clear any previous QR code
+    document.getElementById("qrcode").innerHTML = "";
+
+    // Show the modal
+    var qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
+    qrModal.show();
+
+    // Generate the QR code
+    new QRCode(document.getElementById("qrcode"), "<?=base_url()?>user/index?table_id=" + table_id);
+}
 </script>
-<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Table QR Code</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div id="qrcode"></div>
-      </div>
-    </div>
-  </div>
-</div>
