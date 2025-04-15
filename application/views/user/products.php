@@ -80,7 +80,7 @@
           $qty = $_SESSION['cart'][$row['product_id']];
         }
         else
-        {
+        { 
           $qty = 0;
         }
         ?>
@@ -109,7 +109,7 @@
   </div>
   <div class="container">
     <div class="w-100 text-center shadow-lg p-3 fixed-bottom">
-  <button class="btn btn-primary w-50">Send To Kitchen</button>
+  <a href="<?=base_url()?>user/send_to_kitchen"><button class="btn btn-primary w-50">Send To Kitchen</button></a>
   </div>
 
   <script>
