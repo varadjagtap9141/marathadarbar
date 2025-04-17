@@ -7,6 +7,8 @@
   <title>Hotel Maratha Darbar</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="shortcut icon" href="<?=base_url()?>assets/img/icons/favicon.png" />
+
   <style> 
     .category_scroll_wrapper {
       overflow-x: auto;
@@ -43,16 +45,29 @@
       height: 90px;
       object-fit: cover;
     }
+    .send_to_kitchen{
+      width: 200px;
+      height: 50px;
+      font-size: 18px;
+      background-color:#91434A;
+    }
+    .send_to_kitchen:hover{
+      background-color:#AE8C4D;
+    }
+
   </style>
 </head>
 
-<body>
-  <header class="sticky-top bg-black py-1">
+<body class="bg-white">
+  <header class="sticky-top bg-white py-1">
     <nav class="navbar shadow">
       <div class="container">
-        <a class="navbar-brand text-center w-100" href="#">
-          <img width="auto" height="60" src="<?=base_url()?>upload/logo_new.png" alt="Logo">
+        <a class="navbar-brand d-flex justify-content-center w-100" href="#">
+          <img  width="auto" height="60" src="<?=base_url()?>assets/img/icons/hotel_logo.png" alt="Logo">
         </a>
+        <!-- <a class="float-end" href="<?=base_url('user/my_order')?>">
+        <i class='bx bx-cart'></i>
+        </a> -->
       </div>
     </nav>
   </header>
@@ -109,7 +124,7 @@
   </div>
   <div class="container">
     <div class="w-100 text-center shadow-lg p-3 fixed-bottom">
-  <a href="<?=base_url()?>user/send_to_kitchen"><button class="btn btn-primary w-50">Send To Kitchen</button></a>
+  <a class="text-decoration-none" href="<?=base_url()?>user/send_to_kitchen"><button class="btn text-white rounded-0 send_to_kitchen text-uppercase">Send To Kitchen</button></a>
   </div>
 
   <script>

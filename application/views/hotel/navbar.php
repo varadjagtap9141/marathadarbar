@@ -11,7 +11,7 @@
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="<?=base_url()?>assets/img/icons/icon-48x48.png" />
+    <link rel="shortcut icon" href="<?=base_url()?>assets/img/icons/favicon.png" />
 
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
@@ -26,7 +26,8 @@
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand" href="<?=base_url()?>">
-                    <span class="align-middle">Hotel Maratha Darbar</span>
+                    <!-- <span class="align-middle">Hotel Maratha Darbar</span> -->
+                    <img src="<?=base_url()?>assets/img/icons/hotel_logo.png" alt="Logo" class="img-fluid">
                 </a>
 
                 <ul class="sidebar-nav">

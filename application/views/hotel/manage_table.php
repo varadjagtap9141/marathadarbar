@@ -16,6 +16,7 @@
         </form>
     </div>
 </div>
+
 <div class="row">
     <div class="card card-body table-responsive">
         <div class="col-md-12">
@@ -23,68 +24,105 @@
             <table class="table table-bordered text-center table-hover">
                 <thead>
                     <tr>
+                        <th>QR</th>
                         <th>Sr.No.</th>
                         <th>Table Number</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                foreach($tables as $key=>$value)
-                {
-                    ?>
+                    <?php foreach($tables as $key=>$value): ?>
                     <tr>
-                        <td><button
-                                class="btn btn-sm btn-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                onClick="show_qr(<?=$value['table_id']?>)"><i class='bx bx-qr fs-4'></i></button></td>
-                        <td><?=$key+1?></td>
+                        <td>
+                            <button class="btn btn-sm btn-secondary shadow-none"
+                                onClick="show_qr(<?=$value['table_id']?>)">
+                                <i class='bx bx-qr fs-4'></i>
+                            </button>
+                        </td>
+                        <td><?=$key + 1?></td>
                         <td><?=$value['table_no']?></td>
                         <td>
-                            <a href="<?=base_url('hotel/edit_table')?>/<?=$value['table_id']?>"
-                                class="btn btn-primary btn-sm">Edit</a>
-                            <a href="<?=base_url('hotel/delete_table')?>/<?=$value['table_id']?>"
-                                class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                            <a href="<?=base_url('hotel/edit_table')?>/<?=$value['table_id']?>" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="<?=base_url('hotel/delete_table')?>/<?=$value['table_id']?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                         </td>
                     </tr>
-                    <?php
-                }
-                ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="qrModalLabel">Table QR</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <div id="qrcode"></div>
-      </div>
+<!-- Custom QR Modal -->
+<div id="customQrModal" class="custom-modal">
+    <div class="custom-modal-content d-flex flex-column align-items-center">
+        <span class="custom-close" onclick="closeQrModal()">&times;</span>
+        <h5 class="text-center">Table QR</h5>
+        <div id="qrcode" class="text-center mt-3"></div>
     </div>
-  </div>
 </div>
 
+<!-- QR Code JS Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-</script>
+<!-- Custom Modal CSS -->
+<style>
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
 
+.custom-modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px 30px;
+    border-radius: 10px;
+    width: 300px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideDown 0.3s ease-out;
+}
 
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.custom-close {
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+}
+
+.custom-close:hover {
+    color: #000;
+}
+</style>
+
+<!-- QR Modal Script -->
 <script>
 function show_qr(table_id) {
-    // Clear any previous QR code
-    document.getElementById("qrcode").innerHTML = "";
+    document.getElementById("qrcode").innerHTML = ""; // Clear previous
+    document.getElementById("customQrModal").style.display = "block"; // Show modal
 
-    // Show the modal
-    var qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
-    qrModal.show();
-
-    // Generate the QR code
+    // Generate QR
     new QRCode(document.getElementById("qrcode"), "<?=base_url()?>user/index?table_id=" + table_id);
+}
+
+function closeQrModal() {
+    document.getElementById("customQrModal").style.display = "none";
 }
 </script>
