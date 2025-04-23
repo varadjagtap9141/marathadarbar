@@ -18,6 +18,31 @@ class User extends CI_Controller
         print_r($_SESSION['cart']);
         print_r($_SESSION['table_id']);
 
+        $order=[
+            "order_date"=>date("Y-m-d"),
+            "hotel_table_id"=>$_SESSION['table_id'],
+            "order_time"=>date("H:i"),
+            "status"=>"active",
+        ];
+        $order_id=$this->My_model->save("order_table",$order);
+
+        foreach($_SESSION['cart'] as $product_id=>$qty)
+        {
+            $product=$this->My_model->select_where("product",["product_id"=>$product_id]);
+            $product_price=$product[0]['product_price'];
+            $total=$product_price*$qty;
+
+            
+            $order_product=[
+                "order_id"=>$order_id,
+                "product_id"=>$product_id,
+                "qty"=>$qty,
+                "product_price"=>$product_price,
+                "total"=>$total
+            ];
+            $this->My_model->save("order_product",$order_product);
+        }
+
     }
 }
 ?>

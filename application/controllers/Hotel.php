@@ -21,7 +21,8 @@ class Hotel extends CI_Controller
     public function index()
     {
         $this->navbar();
-        $this->load->view('hotel/index');
+        $data['tables']=$this->My_model->select_where("hotel_table", ['hotel_id' => $_SESSION['hotel_id']]);
+        $this->load->view('hotel/index', $data);
         $this->footer();
     }
     public function manage_table()

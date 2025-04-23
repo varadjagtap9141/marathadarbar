@@ -4,6 +4,7 @@ class My_model extends CI_model
     public function save($tname,$data)
     {
         $this->db->insert($tname,$data);
+        return $this->db->insert_id();
     }
     public function select($tname)
     {
