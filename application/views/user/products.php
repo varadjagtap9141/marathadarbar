@@ -50,6 +50,7 @@
       height: 50px;
       font-size: 18px;
       background-color:#91434A;
+     
     }
     .send_to_kitchen:hover{
       background-color:#AE8C4D;
@@ -88,7 +89,7 @@
     </div>
     
     <!-- Products Grid -->
-    <div class="row" id="productContainer">
+    <div class="row mb-5" id="productContainer">
       <?php foreach($products as $row){
         if(isset($_SESSION['cart'][$row['product_id']]))
         {
@@ -123,7 +124,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="w-100 text-center shadow-lg p-3 fixed-bottom">
+    <div class="w-100 text-center  p-3 fixed-bottom">
   <a class="text-decoration-none" href="<?=base_url()?>user/send_to_kitchen"><button class="btn text-white rounded-0 send_to_kitchen text-uppercase">Send To Kitchen</button></a>
   </div>
 
