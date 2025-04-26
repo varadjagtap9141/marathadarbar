@@ -15,12 +15,10 @@ class User extends CI_Controller
     }
     public function send_to_kitchen()
     {
-        print_r($_SESSION['cart']);
-        print_r($_SESSION['table_id']);
-
+        $this->load->view("user/send_to_kitchen");
         $order=[
             "order_date"=>date("Y-m-d"),
-            "hotel_table_id"=>$_SESSION['table_id'],
+            "table_id"=>$_SESSION['table_id'],
             "order_time"=>date("H:i"),
             "status"=>"active",
         ];
