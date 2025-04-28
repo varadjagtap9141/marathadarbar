@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <header class="sticky-top bg-white py-1">
@@ -20,7 +21,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-body">
-                <h2>order deldkfkjsjfisdfsiuf</h2>
+                <h2>order done</h2>
                 <a href="<?=base_url('user/index?table_id='.$_SESSION['table_id'])?>">
             <button class="btn btn-primary send_to_kitchen">back</button>
         </a>
