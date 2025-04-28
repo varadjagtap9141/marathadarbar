@@ -11,12 +11,32 @@
            $orders= $this->db->query($sql)->result_array();
             ?>
             <div class="col-md-3">
-                <div style="border:1px solid #AE8C4D" class="card card-body shadow-lg">
-                <strong><?=$row['table_no']
-                    ?></strong>
+                <div style="border:1px solid #AE8C4D" class="card card-body shadow-lg position-relative">
+                <mark class="fw-bold w-50"><?=$row['table_no']
+                    ?></mark>
                     <?php
-                    echo "<pre>";
-                    print_r($orders);
+                    if(isset($orders[0]['ttl']))
+                    {
+                        ?>
+                        <strong class="mt-3 fs-3 fw-semibold">&#8377.<?=$orders[0]['ttl']?></strong>
+                        <div style="width:25px;height:25px;" class=" bg-success py-2 position-absolute top-0 end-0 me-2 mt-2 rounded-circle">
+                        </div>
+                        <div class="mt-2 d-flex justify-content-between">
+                            <button class="btn btn-primary rounded-0 fs-4" title="Order Details"><i class='bx bx-detail'></i></button>
+                            <button class="btn btn-secondary rounded-0 fs-4" title="Generate Bill"><i class='bx bx-rupee'></i></button>
+                        </div>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                        <strong class="mt-3 fs-3 fw-semibold">&#8377.0</strong>
+                        <div class="mt-2 d-flex justify-content-between">
+                            <button class="btn btn-primary rounded-0 fs-4" title="Order Details"><i class='bx bx-detail'></i></button>
+                            <button class="btn btn-secondary rounded-0 fs-4" title="Generate Bill"><i class='bx bx-rupee'></i></button>
+                        </div>
+                        <?php
+                    }
                     ?>
                 </div>
             </div>
