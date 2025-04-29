@@ -8,10 +8,6 @@ class User extends CI_Controller
         $data['products']=$this->My_model->get_products();
         $this->load->view("user/products",$data);
     }
-    public function thank_you()
-    {
-        $this->load->view("user/thank_you");
-    }
     public function add_product_session()
     {
         $_SESSION['cart'][$_GET['product_id']]=$_GET['qty'];
@@ -19,6 +15,8 @@ class User extends CI_Controller
     }
     public function send_to_kitchen()
     {
+        $this->load->view("user/send_to_kitchen");
+        
         $order=[
             "order_date"=>date("Y-m-d"),
             "table_id"=>$_SESSION['table_id'],
@@ -42,9 +40,9 @@ class User extends CI_Controller
                 "total"=>$total
             ];
             $this->My_model->save("order_product",$order_product);
-            redirect(base_url('user/thank_you'));
+            unset($_SESSION['cart']);
+            unset($_SESSION['table_id']);
         }
-
     }
 }
 ?>
