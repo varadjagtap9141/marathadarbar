@@ -41,7 +41,6 @@ class User extends CI_Controller
             ];
             $this->My_model->save("order_product",$order_product);
             unset($_SESSION['cart']);
-            unset($_SESSION['table_id']);
         }
     }
 }

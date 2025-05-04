@@ -83,5 +83,16 @@ class Hotel extends CI_Controller
         $this->load->view('hotel/product_list',$data);
         $this->footer();
     }
+    public function order_details($id)
+    {
+        
+        $data['order']=$this->My_model->select_where("order_table",["order_id"=>$id]);
+        $data['order_product']=$this->My_model->select_where("order_product",["order_id"=>$id]);
+        echo "<pre>";
+        print_r($data['order']);
+        print_r($data['order_product']);
+        // $this->load->view('hotel/order_details',$data);
+        
+    }
 }
 ?>
