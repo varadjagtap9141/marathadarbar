@@ -93,5 +93,12 @@ class Hotel extends CI_Controller
         $this->footer();
         
     }
+    public function generate_bill($order_id)
+    {
+        $cond=['order_id'=>$order_id];
+        $data=['status'=>'completed'];
+        $this->My_model->update("order_table",$cond,$data);
+        redirect(base_url('hotel/order_details')."/".$order_id);
+    }
 }
 ?>

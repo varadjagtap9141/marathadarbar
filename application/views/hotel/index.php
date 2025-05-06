@@ -19,7 +19,7 @@
                     if(isset($orders[0]['ttl']))
                     {
                         ?>
-                        <strong class="text-center mt-3 fs-3 fw-semibold">&#8377.<?=$orders[0]['ttl']?></strong>
+                        <strong class="text-center mt-3 fs-3 fw-semibold">&#8377.<?=number_format($orders[0]['ttl'])?></strong>
                         <div style="width:25px;height:25px;" class=" bg-success py-2 position-absolute top-0 end-0 me-2 mt-2 rounded-circle">
                         </div>
                         <div class="mt-2 d-flex justify-content-between">

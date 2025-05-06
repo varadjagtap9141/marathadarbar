@@ -14,7 +14,7 @@ class My_model extends CI_model
     {
         return $this->db->where($cond)->get($tname)->result_array();
     }
-    public function update($tname,$data,$cond)
+    public function update($tname,$cond,$data)
     {
         $this->db->where($cond)->update($tname,$data);
     }
