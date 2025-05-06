@@ -36,7 +36,6 @@
                     <th>SrNo</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
-                    <th>Price</th>
                     <th>Total</th>
                 </tr>
             </thead>
@@ -50,14 +49,13 @@
                     <td><?=$key+1?></td>
                     <td><?=$row['product_name']?></td>
                     <td><?=$row['qty']?></td>
-                    <td>&#8377;<?=number_format($row['product_price'])?></td>
                     <td>&#8377;<?=number_format($row['total'])?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="4" class="text-end fs-4 fw-bold">Total Amount:</td>
+                    <td colspan="3" class="text-end fs-4 fw-bold">Total Amount:</td>
                     <td class="fs-4 fw-bold">&#8377;<?=number_format($total_amt)?></td>
                 </tr>
             </tfoot>

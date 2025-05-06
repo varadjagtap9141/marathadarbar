@@ -33,8 +33,8 @@
                         ?>
                         <strong class="text-center mt-3 fs-3 fw-semibold">&#8377.0</strong>
                         <div class="mt-2 d-flex justify-content-between">
-                            <a href="<?=base_url('hotel/order_details')?>/" class="btn btn-primary rounded-0 fs-4 text-decoration-none" title="Order Details"><i class='bx bx-detail'></i></a>
-                            <a href="<?=base_url('hotel/generate_bill')?>/" class="btn btn-secondary rounded-0 fs-4" title="Generate Bill"><i class='bx bx-rupee'></i></a>
+                            <a href="#" class="btn btn-primary rounded-0 fs-4 text-decoration-none" title="Order Details"><i class='bx bx-detail'></i></a>
+                            <a href="#" class="btn btn-secondary rounded-0 fs-4" title="Generate Bill"><i class='bx bx-rupee'></i></a>
                         </div>
                         <?php
                     }

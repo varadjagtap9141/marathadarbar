@@ -23,7 +23,16 @@ class User extends CI_Controller
             "order_time"=>date("H:i"),
             "status"=>"active",
         ];
-        $order_id=$this->My_model->save("order_table",$order);
+        $sql="SELECT * FROM order_table WHERE table_id='".$_SESSION['table_id']."' AND status='active'";
+        $data=$this->db->query($sql)->result_array();
+        if(count($data)>0)
+        {
+            $order_id=$data[0]['order_id'];
+        }
+        else
+        {
+            $order_id=$this->My_model->save("order_table",$order);
+        }
 
         foreach($_SESSION['cart'] as $product_id=>$qty)
         {
