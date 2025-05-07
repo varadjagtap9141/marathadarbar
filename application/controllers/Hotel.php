@@ -22,19 +22,22 @@ class Hotel extends CI_Controller
     {
         $this->navbar();
         $data['tables']=$this->My_model->select_where("hotel_table", ['hotel_id' => $_SESSION['hotel_id']]);
-        $this->load->view('hotel/index', $data);
-
         // for dates & amounts charts
-        $dates[]=0;
-        $amounts[] = 0;
+        $dates=[];
+        $amounts=[] ;
         for($i=0;$i<7;$i++)
         {
-            $d=date('Y-m-d', strtotime("-$i days"));
+            $d=date('Y-m-d', strtotime("-$i day"));
             $dates[]=$d;
 
             $sql="SELECT SUM((SELECT SUM(total) FROM order_product WHERE order_table.order_id=order_product.order_id)) as ttl FROM order_table WHERE order_date='$d'";
             $result=$this->db->query($sql)->result_array();
+            $amounts[]=(int)$result[0]['ttl'];
         }
+        $data['x_axis']=$dates;
+        $data['y_axis']=$amounts;
+        
+        $this->load->view('hotel/index', $data);
         $this->footer();
     }
     public function manage_table()

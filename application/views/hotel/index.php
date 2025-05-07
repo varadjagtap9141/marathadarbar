@@ -57,26 +57,28 @@
 </div>
 <div class="row">
     <div class="card card-body rounded-0 shadow-lg mt-3">
-       <div class="row">
-       <div class="col-md-8">
-            <canvas class="" id="myChart"></canvas>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-12 d-flex justify-content-center align-items-center">
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
-       </div>
     </div>
 </div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script>
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-var yValues = [55, 49, 44, 24, 15];
+var xValues = [<?="'".implode("', '",$x_axis)."'"?>];
+var yValues = [<?="'".implode("', '",$y_axis)."'"?>
+];
 
 new Chart("myChart", {
-    type: "bar",
+    type: "line",
     data: {
         labels: xValues,
         datasets: [{
-            backgroundColor: '#D3A757',
+            backgroundColor: 'rgba(0,0,255,0.1)',
+            borderColor: "#D3A757",
             data: yValues
         }]
     },
