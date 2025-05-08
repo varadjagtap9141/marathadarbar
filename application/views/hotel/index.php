@@ -28,9 +28,16 @@
                         <a href="<?=base_url('hotel/order_details')?>/<?=$orders[0]['order_id']?>"
                             class="btn btn-primary rounded-0 fs-4 text-decoration-none" title="Order Details"><i
                                 class='bx bx-detail'></i></a>
+                        <a href="upi://pay?pa=varadjagtap31@okicici&pn=Maratha_Darbar&am=<?=number_format($orders[0]['ttl'])?>&tn=Visit_Again&cu=INR"
+                            class="btn btn-primary rounded-0 fs-4 text-decoration-none" id="payNowBtn" title="Pay Now">
+                            <i class='bx bx-rupee'></i>
+                            
+
+                        </a>
                         <a href="<?=base_url('hotel/generate_bill')?>/<?=$orders[0]['order_id']?>"
-                            class="btn btn-secondary rounded-0 fs-4" title="Generate Bill"><i
-                                class='bx bx-rupee'></i></a>
+                            class="btn btn-secondary rounded-0 fs-4" title="Generate Bill">
+                            
+                            <i class='bx bxs-check-circle'></i></a>
                     </div>
                     <?php
                     }
@@ -42,7 +49,7 @@
                         <a href="#" class="btn btn-primary rounded-0 fs-4 text-decoration-none" title="Order Details"><i
                                 class='bx bx-detail'></i></a>
                         <a href="#" class="btn btn-secondary rounded-0 fs-4" title="Generate Bill"><i
-                                class='bx bx-rupee'></i></a>
+                                class='bx bxs-check-circle'></i></a>
                     </div>
                     <?php
                     }
@@ -65,12 +72,30 @@
     </div>
 </div>
 
+<!-- Bootstrap Modal for QR Code -->
+<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="qrModalLabel">Scan to Pay</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="qrcode"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger rounded-0" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script>
 var xValues = [<?="'".implode("', '",$x_axis)."'"?>];
-var yValues = [<?="'".implode("', '",$y_axis)."'"?>
-];
+var yValues = [<?="'".implode("', '",$y_axis)."'"?>];
 
 new Chart("myChart", {
     type: "line",
@@ -91,5 +116,32 @@ new Chart("myChart", {
             text: "Hotel Order Chart"
         }
     }
+});
+</script>
+
+
+<script>
+// Function to show QR code modal
+function showQR(link) {
+    // Clear previous QR code if any
+    document.getElementById('qrcode').innerHTML = "";
+    // Generate new QR code
+    new QRCode(document.getElementById("qrcode"), {
+        text: link,
+        width: 200,
+        height: 200
+    });
+    // Open Bootstrap modal
+    var qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
+    qrModal.show();
+}
+
+// Attach click event to all Pay Now buttons (because multiple tables)
+document.querySelectorAll('a[href^="upi://pay"]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const upiLink = this.getAttribute('href');
+        showQR(upiLink);
+    });
 });
 </script>

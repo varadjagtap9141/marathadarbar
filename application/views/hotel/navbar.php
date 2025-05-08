@@ -92,7 +92,7 @@
                                 <a class="dropdown-item" href="<?=base_url()?>"><i class="align-middle me-1"
                                         data-feather="settings"></i>Change Password</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?=base_url()?>">Log out</a>
+                                <a class="dropdown-item" href="<?=base_url('hotel/logout')?>">Log out</a>
                             </div>
                         </li>
 

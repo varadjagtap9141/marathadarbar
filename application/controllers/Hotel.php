@@ -18,6 +18,11 @@ class Hotel extends CI_Controller
     {
         $this->load->view('hotel/footer');
     }
+    public function logout()
+    {
+        unset($_SESSION['hotel_id']);
+        redirect(base_url('login'));
+    }
     public function index()
     {
         $this->navbar();
@@ -101,6 +106,7 @@ class Hotel extends CI_Controller
     public function order_details($order_id)
     {
         $this->navbar();
+        $data['hotel_id']=$_SESSION['hotel_id'];
         $data['order']=$this->My_model->select_where("order_table",["order_id"=>$order_id])[0];
         $sql="SELECT * FROM product,order_product WHERE order_id='$order_id' AND product.product_id=order_product.product_id";
         $data['order_product']=$this->db->query($sql)->result_array();

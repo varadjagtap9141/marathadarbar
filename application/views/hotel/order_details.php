@@ -1,7 +1,7 @@
 <div class="row">
     <div class="card card-body rounded-0 shadow-lg table-responsive">
         <!-- Order Details Heading (visible on screen, hidden in print) -->
-        <h4 class="fw-bold text-center no-print">   
+        <h4 class="fw-bold text-center no-print">
             Order Details #MD00<?=$order['order_id']?>
         </h4>
 
@@ -11,7 +11,8 @@
                 <nav class="navbar">
                     <div class="container">
                         <a class="navbar-brand d-flex justify-content-center w-100" href="#">
-                            <img width="auto" height="60" src="<?=base_url()?>assets/img/icons/hotel_logo.png" alt="Logo">
+                            <img width="auto" height="60" src="<?=base_url()?>assets/img/icons/hotel_logo.png"
+                                alt="Logo">
                         </a>
                     </div>
                 </nav>
@@ -20,14 +21,25 @@
 
         <hr />
         <div class="row">
-            <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
                 <strong>Date: <?=$order['order_date']?></strong>
             </div>
-            <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
+                <?php
+                $sql = "SELECT * 
+                FROM hotel_table 
+                JOIN order_table ON hotel_table.table_id = order_table.table_id 
+                WHERE hotel_table.table_id = '".$order['table_id']."'";
+                $result = $this->db->query($sql)->row_array();
+                ?>
+                <strong><mark><?=$result['table_no']?></mark></strong>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
                 <strong>Order Time: <?=$order['order_time']?></strong>
             </div>
-            <div class="col-md-4 d-flex justify-content-center align-items-center">
-                <strong>Order Status: <span class="badge bg-success text-capitalize"><?=$order['status']?></span></strong>
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
+                <strong>Order Status: <span
+                        class="badge bg-success text-capitalize"><?=$order['status']?></span></strong>
             </div>
         </div>
         <table class="table table-bordered mt-4">
@@ -63,20 +75,14 @@
 
         <!-- Button container -->
         <div class="gap-2 justify-content-between d-flex no-print">
-            <?php $isCompleted = ($order['status'] == 'completed'); ?>
-            <button 
-                onClick="print_bill()" 
-                class="btn btn-primary text-decoration-none float-end shadow-none"
-                <?= $isCompleted ? '' : 'disabled' ?>
-                title="<?= $isCompleted ? 'Print the bill' : 'Complete the order first to enable printing' ?>"
-            >
+            <button onClick="print_bill()" class="btn btn-primary text-decoration-none float-end shadow-none">
                 <i class='bx bx-printer text-white'></i>
             </button>
 
             <button class="btn btn-secondary text-decoration-none float-end shadow-none">
                 <a href="<?=base_url('hotel/index')?>"><i class='bx bx-arrow-back text-white'></i></a>
             </button>
-        </div> 
+        </div>
     </div>
 </div>
 
