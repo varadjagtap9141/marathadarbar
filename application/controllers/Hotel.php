@@ -80,7 +80,26 @@ class Hotel extends CI_Controller
         $this->My_model->save("category",$_POST);
         redirect(base_url('hotel/manage_category'));
     }
-    //category edit,update,delete pending
+    public function edit_category($id)
+    {
+        $this->navbar();
+        $cond=['category_id'=>$id];
+        $data['category']=$this->My_model->select_where("category",$cond)[0];
+        $this->load->view('hotel/edit_category',$data);
+        $this->footer();
+    }
+    public function update_category()
+    {
+        $cond=['category_id'=>$_POST['category_id']];
+        $this->My_model->update("category",$cond,$_POST);
+        redirect(base_url('hotel/manage_category'));
+    }
+    public function delete_category($id)
+    {
+        $cond=['category_id'=>$id];
+        $this->My_model->delete("category",$cond);
+        redirect(base_url('hotel/manage_category'));
+    }
     public function add_product()
     {
         $this->navbar();
@@ -99,10 +118,18 @@ class Hotel extends CI_Controller
     public function product_list()
     {
         $this->navbar();
-        $data['products']=$this->My_model->get_products();
+        if(isset($_GET['search']))
+        {
+            $data['products']=$this->My_model->search_product($_GET['search']);
+        }
+        else
+        {
+            $data['products']=$this->My_model->get_products();
+        }
         $this->load->view('hotel/product_list',$data);
         $this->footer();
     }
+    // product edit, update, delete
     public function order_details($order_id)
     {
         $this->navbar();

@@ -31,5 +31,9 @@ class My_model extends CI_model
     {
         return $this->db->query("SELECT * FROM product,category WHERE product.category_id=category.category_id")->result_array();
     }
+    public function search_product($name)
+    {
+        return $this->db->query("SELECT * FROM product,category WHERE product.category_id=category.category_id AND (product_name LIKE '%$name%' OR category_name LIKE '%$name%')")->result_array();
+    }
 }
 ?>

@@ -1,11 +1,9 @@
 <div class="row">
     <div class="card card-body rounded-0 shadow-lg table-responsive">
-        <!-- Order Details Heading (visible on screen, hidden in print) -->
         <h4 class="fw-bold text-center no-print">
             Order Details #MD00<?=$order['order_id']?>
         </h4>
 
-        <!-- Print Header (hidden on screen, visible in print) -->
         <div class="print-header d-none">
             <header class="py-1">
                 <nav class="navbar">

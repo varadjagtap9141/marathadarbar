@@ -42,8 +42,10 @@
                         <td><?=$key + 1?></td>
                         <td><?=$value['table_no']?></td>
                         <td>
-                            <a href="<?=base_url('hotel/edit_table')?>/<?=$value['table_id']?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="<?=base_url('hotel/delete_table')?>/<?=$value['table_id']?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                            <div class="d-flex justify-content-center gap-1">
+                                <a href="<?=base_url('hotel/edit_table')?>/<?=$value['table_id']?>" class="btn btn-primary rounded-0"><i class='bx bxs-edit'></i></a>
+                            <a href="<?=base_url('hotel/delete_table')?>/<?=$value['table_id']?>" class="btn btn-danger rounded-0" onclick="return confirm('Are you sure?')"><i class="bx bxs-trash"></i></a>
+                            </div>
                         </td>
                     </tr>
                     <?php endforeach; ?>
