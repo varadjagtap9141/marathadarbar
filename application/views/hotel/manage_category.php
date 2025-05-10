@@ -18,7 +18,18 @@
 <div class="row">
    <div class="card card-body table-responsive">
     <div class="col-md-12">
-        <h4>Category List</h4>
+        <div class="d-flex mb-3">
+                <div class="me-auto p-2">
+                    <h4>Category List
+                    </h4>
+                </div>
+                <div class="p-2">
+                    <form class="d-flex float-end" method="get" action="<?=base_url('hotel/manage_category')?>">
+                        <input class="form-control me-1 shadow-none" name="search" type="search" placeholder="Search" />
+                        <button class="btn bg-primary text-white shadow-none"><i class="bx bx-search"></i></button>
+                    </form>
+                </div>
+            </div>
         <table class="table table-bordered text-center table-hover">
             <thead>
                 <tr>

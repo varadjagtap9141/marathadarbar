@@ -59,18 +59,38 @@ class Hotel extends CI_Controller
         $this->My_model->save("hotel_table",$_POST);
         redirect(base_url('hotel/manage_table'));
     }
+    public function edit_table($table_id)
+    {
+        $this->navbar();
+        $cond=["table_id"=>$table_id];
+        $data['table']=$this->My_model->select_where("hotel_table",$cond)[0];
+        $this->load->view('hotel/edit_table',$data);
+        $this->footer();
+    }
+    public function update_table()
+    {
+        $cond=["table_id"=>$_POST['table_id']];
+        $this->My_model->update("hotel_table",$cond,$_POST);
+        redirect(base_url('hotel/manage_table'));
+    }
     public function delete_table($id)
     {
         $cond=['table_id'=>$id];
         $this->My_model->delete("hotel_table", $cond);
         redirect(base_url('hotel/manage_table'));
     }
-    //hotel table edit,update pending
     // category CRUD
     public function manage_category()
     {
         $this->navbar();
-        $data['category']=$this->My_model->get_category();
+        if(isset($_GET['search']))
+        {
+            $data['category']=$this->My_model->search_category($_GET['search']);
+        }
+        else
+        {
+            $data['category']=$this->My_model->get_category();
+        }
         $this->load->view('hotel/manage_category',$data);
         $this->footer();
     }
